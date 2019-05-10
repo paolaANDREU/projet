@@ -2,6 +2,7 @@
 
 class MY_model extends CI_Model
 {
+  //private $table='';
 	/**
 	 *	insert a line in bd
 	 */
@@ -28,7 +29,7 @@ class MY_model extends CI_Model
                         ->where($where)
                         ->limit($nb, $start)
                         ->get()
-                        ->result();
+                        ->result_array();
 }
 
 	/**
