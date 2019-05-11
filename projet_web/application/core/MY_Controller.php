@@ -7,12 +7,12 @@ class MY_Controller extends CI_Controller
 {
 
   private $_cookie = array(
-                   // 'name'   => '',
-                   // 'value'  => '',
+                    //'name'   => '',
+                    //'value'  => '',
                    'expire' => '86500',//time
                    // 'domain' => '.some-domain.com',
                    'path'   => '/',
-                   // 'prefix' => '',
+                    //'prefix' => '',
                );
 
     private $_cookie_id_name = "189CDS8CSDC98JCPDSCDSCDSCDSD8C9SD"; // nom d'un cookie
@@ -37,15 +37,17 @@ class MY_Controller extends CI_Controller
                 $cookies_identifiant['value'] = password_hash($this->input->post('email'),PASSWORD_DEFAULT);
                 // $cookies_identifiant['domain'] = "";
                 $cookies_identifiant['prefix'] = $this->config->item('cookie_prefix');
+                //set_cookie($cookies_identifiant);
                 set_cookie($cookies_identifiant);
 
+                //echo $this->input->post('email');
                 // Tout est ok, ont redirige vers la page d'accueil du user
-                redirect(site_url('user'));
+                redirect(site_url('user/login'));
             }
             else
             {
                 // Mauvais identifiant, ont redirige vers la page de connexion
-                redirect(site_url('user/login'));
+                redirect(site_url('user/index'));
             }
         }
         //si pas de demande de connexion mais changement de page
@@ -55,17 +57,30 @@ class MY_Controller extends CI_Controller
             $mail = get_cookie($this->config->item('cookie_prefix').$this->_cookie_id_name);
 
             if ($this->User_model->_existUser($mail) == FALSE)
-                redirect(site_url('user/login')); // Mauvais identifiant, ont redirige vers la page de connexion
+                redirect(site_url('user/index')); // Mauvais identifiant, ont redirige vers la page de connexion
         }
         elseif ($this->router->fetch_class() != "user")
         {
-            redirect(site_url('user/login')); // Mauvais identifiant, ont redirige vers la page de connexion
+            redirect(site_url('user/index')); // Mauvais identifiant, ont redirige vers la page de connexion
         }
     }
     public function get_license(){
-      $data=$this->user_model->readUser(get_cookie($this->config->item('cookie_prefix').$this->_cookie_id_name));
-      $res=$data[0];
-      return $res['license'];
+      $test=get_cookie($this->config->item('cookie_prefix').$this->_cookie_id_name, TRUE);
+      if (isset($test)) {
+        $data=$this->User_model->readUser($test);
+        $res=$data[0];
+        return $res['license'];
+      }else {
+        redirect(site_url('user/index'));
+      }
+      //$this->load->model('user_model');
+      //$mail=get_cookie($this->config->item('cookie_prefix').$this->get_cookie_id_name());
+      //$res=$data[0];
+      //return $mail;
+    }
+
+    public function get_cookie_id_name(){
+      return $this->_cookie_id_name;
     }
 }
 

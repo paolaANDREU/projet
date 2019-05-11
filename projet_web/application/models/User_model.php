@@ -21,16 +21,6 @@ class User_model extends MY_model
 		return false;
   }
 
-//verife email et pasword d'un cookie
-	public function validate($mail, $password) {
-		if($this->_existUser($mail)){
-      if (($passwd_crypt = $this->_getUser($mail)) !== FALSE){
-				return password_verify($password,$passwd_crypt);
-			}
-    }
-		return false;
-  }
-
 //retourne password de email si il existe
 	private function _getUser($mail) {
 	   $user = $this->db->select(array('email', 'password'))->get_where($this->table, array('email' => $mail))->row();
@@ -39,7 +29,6 @@ class User_model extends MY_model
 	 }else {
 	 	return false;
 	 }
-
 	}
 
 //verifie email crypté
