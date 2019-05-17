@@ -7,7 +7,8 @@ class User extends MY_Controller {
 	{
 		parent::__construct();
 	}
-	
+
+	//charge la page d'erreur de connexion
 	public function index()
 	{
 		$this->load->view('navbar');
@@ -63,6 +64,7 @@ class User extends MY_Controller {
 			}
 		}
 
+//charge la page compte
 		public function account()
 		{
 			$this->load->model('User_model');
@@ -72,7 +74,7 @@ class User extends MY_Controller {
 			$this->load->view('account',$res);
 		}
 
-
+//charge la page agenda
 		public function calendar()
 		{
 			$this->load->model('Player_model');

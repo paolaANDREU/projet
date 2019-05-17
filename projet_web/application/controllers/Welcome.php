@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
+//charge la page d'accueil de l'application
 	public function index()
 	{
 		$this->load->model('Match_model');
@@ -12,6 +13,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('welcome_message',$data);
 	}
 
+//charge la page s'inscrire
 	public function registration()
 	{
 		$this->load->model('Class_model');
@@ -20,6 +22,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('registration_form',$data);
 	}
 
+//charge la page de connexion
 	public function connection()
 	{
 		$this->load->view('navbar');

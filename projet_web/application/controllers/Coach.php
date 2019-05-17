@@ -14,6 +14,7 @@ class Coach extends MY_Controller {
     $this->load->view('menu_coach');
   }
 
+  // ajout de catégorie
   function add_class()
   {
     if ($this->input->post('categorie', TRUE) && $this->input->post('number', TRUE) && $this->input->post('niveau', TRUE)) {
@@ -33,6 +34,7 @@ class Coach extends MY_Controller {
 
   }
 
+  //charge la page ajout de match
   function add_match_form()
   {
     $this->load->model('Class_model');
@@ -42,7 +44,7 @@ class Coach extends MY_Controller {
     $this->load->view('add_match',$data);
   }
 
-
+  //ajout de match
   function add_match()
   {
     if ($this->input->post('categorie', TRUE) && $this->input->post('date', TRUE) && $this->input->post('hour', TRUE) && $this->input->post('oppositeteam', TRUE) && $this->input->post('numberplayer', TRUE) && $this->input->post('athome', TRUE)) {

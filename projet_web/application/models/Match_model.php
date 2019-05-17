@@ -9,6 +9,7 @@ class Match_model extends MY_model
 		parent::__construct();
 	}
 
+//retourne tous les matchs à venir pour un joueur dans sa catégorie
 	public function upcomingmatches(){
 		$this->db->select('*');
 		$this->db->from('match');

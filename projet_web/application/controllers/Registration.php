@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Registration extends CI_Controller {
 
+// ajout d'un utilisateur
   public function index()
   {/*
     $this->load->library('form_validation');
