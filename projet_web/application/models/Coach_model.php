@@ -3,16 +3,16 @@
 class Coach_model extends User_model
 {
 	protected $table='coach';
-	public function __construct()
-	    {
 
-	    }
+	function __construct()
+	{
+		parent::__construct();
+	}
 
 	public function createCoach($license) {
-    $data=array('license'=>$license);
-				 return $this->create($data);
-			}
-
-
+		$data=array('license'=>$license);
+		return $this->create($data);
+	}
+	
 }
 ?>
